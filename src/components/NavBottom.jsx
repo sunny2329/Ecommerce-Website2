@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { FaShoppingCart } from 'react-icons/fa';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router';
+import { setSearch } from '../Redux/cart';
 
 function NavBottom() {
   const products = useSelector(state => state.ecommerce);
+  const dispatch = useDispatch();
   const cartq = products.cart.reduce((total, item) => total + item.quantity, 0);
   const navigate = useNavigate();
   return (
@@ -15,7 +17,12 @@ function NavBottom() {
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
-          <input class="bg-gray-100 text-primary outline-none w-full" type="text" placeholder="Search Product" />
+          <input
+          // value={products.search}
+          onChange={(e)=>{
+            dispatch(setSearch(e.target.value));
+          }}
+          class="bg-gray-100 text-primary outline-none w-full" type="text" placeholder="Search Product" />
         </div>
         <div class="flex py-3 px-4 rounded-lg text-gray-500 font-semibold cursor-pointer">
         <div>

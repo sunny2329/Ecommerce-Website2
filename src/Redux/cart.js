@@ -7,7 +7,8 @@ const initialState = {
         image: '',
         price: 100,
         quantity: 1,
-    }]
+    }],
+    search: ''
 }
 
 export const cartSlice = createSlice({
@@ -46,10 +47,13 @@ export const cartSlice = createSlice({
         resetCart: (state, action) => {
             state.cart = []
             localStorage.setItem('cart', JSON.stringify(state.cart));
+        },
+        setSearch:(state,action) => {
+            state.search = action.payload;
         }
     }
 })
 
-export const { addItem, increaseQuantity, decreaseQuantity, deleteItem, resetCart } = cartSlice.actions
+export const { addItem, increaseQuantity, decreaseQuantity, deleteItem, resetCart, setSearch } = cartSlice.actions
 
 export default cartSlice.reducer;
