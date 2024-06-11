@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navbar{
+    @apply hover:text-primary hover:opacity-90 p-4
+}
+
+.navbar-btn{
+    @apply bg-primary text-white p-2 text-xl rounded-md hover:bg-white hover:text-primary hover:outline-primary hover:outline-double hover:font-bold
+}
