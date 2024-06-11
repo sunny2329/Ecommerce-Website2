@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import Logo from '../assets/ss.png'
+import Logo from '../assets/ss.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,29 +24,35 @@ const Navbar = () => {
           <NavLink to="/shop" className={({ isActive }) => {
             return `navbar ${isActive ? 'text-primary' : ''}`
           }}>Shop</NavLink>
-          <NavLink to="/contact" className="navbar">Contact</NavLink>
-          <NavLink to="/about" className="navbar ml-4">About Us</NavLink>
+          <NavLink to="/about" className={({ isActive }) => {
+            return `navbar ${isActive ? 'text-primary' : ''}`
+          }}>About Us</NavLink>
         </div>
         <div className="hidden md:flex space-x-4">
-          <Link to="/signin" className=" hover:opacity-75 navbar-btn">Sign In</Link>
-          <Link to="/signup" className=" hover:opacity-75 navbar-btn">Sign Up</Link>
+          <Link to="/signin" className="hover:opacity-75 navbar-btn">Sign In</Link>
+          <Link to="/signup" className="hover:opacity-75 navbar-btn">Sign Up</Link>
         </div>
         <div className="md:hidden">
-          <button onClick={toggleMenu} className="text-white focus:outline-none">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
+          <button onClick={toggleMenu} className="text-primary focus:outline-none">
+            {isOpen ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            )}
           </button>
         </div>
       </div>
       {isOpen && (
-        <div className="md:hidden bg-gray-700">
-          <Link to="/" className="block text-white py-2 px-4 hover:bg-blue-900 hover:opacity-75" onClick={toggleMenu}>Home</Link>
-          <Link to="/shop" className="block text-white py-2 px-4 hover:bg-gray-600 hover:opacity-75" onClick={toggleMenu}>Shop</Link>
-          <Link to="/contact" className="block text-white py-2 px-4 hover:bg-gray-600 hover:opacity-75" onClick={toggleMenu}>Contact</Link>
-          <Link to="/about" className="block text-white py-2 px-4 hover:bg-gray-600 hover:opacity-75" onClick={toggleMenu}>About Us</Link>
-          <Link to="/signin" className="block text-white py-2 px-4 hover:bg-gray-600 hover:opacity-75" onClick={toggleMenu}>Sign In</Link>
-          <Link to="/signup" className="block text-white py-2 px-4 hover:bg-gray-600 hover:opacity-75" onClick={toggleMenu}>Sign Up</Link>
+        <div className="md:hidden bg-white">
+          <Link to="/" className="block bg-white text-primary py-2 px-4  hover:opacity-75" onClick={toggleMenu}>Home</Link>
+          <Link to="/shop" className="block bg-white text-primary py-2 px-4 hover:opacity-75" onClick={toggleMenu}>Shop</Link>
+          <Link to="/about" className="block bg-white text-primary py-2 px-4  hover:opacity-75" onClick={toggleMenu}>About Us</Link>
+          <Link to="/signin" className="block bg-white text-primary py-2 px-4  hover:opacity-75" onClick={toggleMenu}>Sign In</Link>
+          <Link to="/signup" className="block bg-white text-primary py-2 px-4 hover:opacity-75" onClick={toggleMenu}>Sign Up</Link>
         </div>
       )}
     </nav>

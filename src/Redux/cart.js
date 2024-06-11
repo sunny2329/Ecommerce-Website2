@@ -8,7 +8,9 @@ const initialState = {
         price: 100,
         quantity: 1,
     }],
-    search: ''
+    search: localStorage.getItem('search') || '',
+    userCat: localStorage.getItem('userCat') || 'all',
+    sort: localStorage.getItem('sort') || 'none'
 }
 
 export const cartSlice = createSlice({
@@ -50,10 +52,19 @@ export const cartSlice = createSlice({
         },
         setSearch:(state,action) => {
             state.search = action.payload;
+            localStorage.setItem('search', state.search);
+        },
+        setUserCat:(state,action) => {
+            state.userCat = action.payload;
+            localStorage.setItem('userCat', state.userCat);
+        },
+        setSort:(state,action) => {
+            state.sort = action.payload;
+            localStorage.setItem('sort', state.sort);
         }
     }
 })
 
-export const { addItem, increaseQuantity, decreaseQuantity, deleteItem, resetCart, setSearch } = cartSlice.actions
+export const { addItem, increaseQuantity, decreaseQuantity, deleteItem, resetCart, setSearch, setUserCat, setSort } = cartSlice.actions
 
 export default cartSlice.reducer;
